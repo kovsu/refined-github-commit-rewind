@@ -77,8 +77,8 @@
     const olderBtn = Array.from(document.querySelectorAll('.btn.BtnGroup-item'))[1]
 
     if (olderBtn.getAttribute('disabled') === 'disabled') {
-      isAutoJump = true
-      localStorage.setItem('is-github-commit-last-page', JSON.parse(true))
+      isAutoJump = false
+      localStorage.setItem('is-auto-jump', JSON.parse(isAutoJump))
     }
     olderBtn.click()
   }
