@@ -13,6 +13,13 @@
 (function () {
   'use strict'
 
+  function blankLinks() {
+    const links = Array.from(document.querySelectorAll('.TimelineItem-body a'))
+    links.forEach((link) => {
+      link.setAttribute('target', '_blank')
+    })
+  }
+
   function reverseTimelineItems() {
     const timeline = document.querySelector('.js-navigation-container.js-active-navigation-container.mt-3')
     const timelineItems = timeline.querySelectorAll('.TimelineItem.TimelineItem--condensed')
@@ -38,20 +45,50 @@
     })
   }
 
-  function append() {
+  let isAutoJump = JSON.parse(localStorage.getItem('is-auto-jump')) ?? false
+
+  function appendDOM() {
     const container = document.querySelector('.file-navigation')
+
     const reverseBtn = document.createElement('button')
     reverseBtn.classList.add('btn', 'mt-2')
     reverseBtn.innerText = 'Reverse'
     reverseBtn.addEventListener('click', () => {
       reverseTimelineItems()
     })
+
+    const autoJumpBtn = document.createElement('button')
+    autoJumpBtn.classList.add('btn', 'mt-2', 'mr-2')
+    autoJumpBtn.innerText = isAutoJump ? 'Cancel Auto Jump' : 'Auto Jump'
+    autoJumpBtn.addEventListener('click', () => {
+      isAutoJump = !isAutoJump
+      localStorage.setItem('is-auto-jump', JSON.parse(isAutoJump))
+      autoJumpBtn.innerText = isAutoJump ? 'Cancel Auto Jump' : 'Auto Jump'
+    })
+
+    container.appendChild(autoJumpBtn)
     container.appendChild(reverseBtn)
   }
 
+  function toLastPage() {
+    if (!isAutoJump)
+      return
+
+    const olderBtn = Array.from(document.querySelectorAll('.btn.BtnGroup-item'))[1]
+
+    if (olderBtn.getAttribute('disabled') === 'disabled') {
+      isAutoJump = true
+      localStorage.setItem('is-github-commit-last-page', JSON.parse(true))
+    }
+    olderBtn.click()
+  }
+
   function run() {
-    if (location.href.startsWith('https://github.com/') && location.href.split('/').includes('commits'))
-      append()
+    if (location.href.startsWith('https://github.com/') && location.href.split('/').includes('commits')) {
+      blankLinks()
+      appendDOM()
+      toLastPage()
+    }
   }
 
   run()
