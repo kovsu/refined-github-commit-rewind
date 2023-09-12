@@ -1,18 +1,15 @@
+# Refined Github Commits
 
+是一个适用用于 GitHub 的油猴扩展，允许用户查看仓库 commit 时自动跳转到提交记录的最后一页并提供一个反转按钮，使提交记录的时间从上到下显示，按照从旧到新的顺序排列。
 
-# Refined Github Commit Rewind
-
-是一个适用用于 GitHub 的油猴扩展，允许用户以反向方式查看仓库的提交历史记录。
+[Install on Greasyfork](https://greasyfork.org/en/scripts/475020-refined-github-commit-rewind)
 
 ## 简介
 
-GitHub 默认以正向顺序显示仓库的提交历史，从最新的提交开始。然而，有时候用户可能需要查看一个项目的起始提交，以便更好地理解项目的演化过程。这就是 Refined Github Commit Rewind 出现的原因。
+GitHub 默认以正向顺序显示仓库的提交历史，从最新的提交开始。然而，有时候用户可能需要查看一个项目的起始提交，以便更好地理解项目的演化过程。这就是 Refined Github Commits 出现的原因。
 
-Refined Github Commit Rewind 提供了一个简单而强大的功能，允许用户从第一次提交提交开始浏览仓库的历史记录。
+## 功能
 
-## 使用
-
-1. 确保浏览器的油猴插件已经安装
-2. 进入 [greasyfork](https://greasyfork.org/)，搜索 `Refined Github Commit Rewind`
-3. 点击安装
-
+- 自动跳转到提交历史的最后一页
+- 提交记录的时间从上到下显示，按照从旧到新的顺序排列
+- 给提交记录的 a 标签添加 `target="_blank"`
